@@ -32,3 +32,10 @@ def search_employee(e,number_of_employee):
             i+=1
     if(found==0 ):
         print("employee does't exist")
+def avg_salary_employee(e,number_of_employee):
+    s=0
+    for i in range(number_of_employee):
+        s+=e[i]["salary"]
+    avg=s/number_of_employee
+    print(f"number of employee : {number_of_employee} \n average salary : {avg:.2f}")
+
