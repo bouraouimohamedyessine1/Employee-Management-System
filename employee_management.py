@@ -50,5 +50,19 @@ def delete_employee(e):
         i+=1
     if x==0:
         print("employee does not exist")
+def update_salary(e):
+    employee_id=int(input("Give me your ID :"))
+    i=0
+    x=0
+    while i<len(e) and x==0:
+        if employee_id==e[i]["id"]:
+            new_salary=float(input("Enter new salary :"))
+            e[i]["salary"]=new_salary
+            x=1
+            print("Salary updated succesfully")
+        i+=1
+    if x==0:
+        print("employee does niot exist")
+    return e
 
 
