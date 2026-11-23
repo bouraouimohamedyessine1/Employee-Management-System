@@ -38,4 +38,17 @@ def avg_salary_employee(e,number_of_employee):
         s+=e[i]["salary"]
     avg=s/number_of_employee
     print(f"number of employee : {number_of_employee} \n average salary : {avg:.2f}")
+def delete_employee(e):
+    del_employee=int(input("Give me the ID of the employee that i should delete"))
+    i=0
+    x=0
+    while(i<len(e)):
+        if e[i]["id"]==del_employee:
+            del(e[i])
+            x=1
+            break
+        i+=1
+    if x==0:
+        print("employee does not exist")
+
 
