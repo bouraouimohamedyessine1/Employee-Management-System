@@ -4,9 +4,12 @@ def employees_number():
     while number_of_employee<=0:
         number_of_employee=int(input("How many employee? "))
     return number_of_employee
-def verif(e,employee_id,employee_age):
+def verif(e,employee_id,employee_age,employee_salary):
     test=True
     i=0
+    if employee_salary<0:
+        print("Sarlary Error")
+        test=False
     if not(18<=employee_age<=64):
         print("Your age is unrealstic")
         test=False
@@ -24,7 +27,7 @@ def employees_informations(number_of_employee):
         employee_id=int(input("\nGive me your ID :"))
         employee_age=int(input("\nYour age : "))
         employee_salary=float(input("\n Your salary :"))
-        while not verif(e,employee_id,employee_age):
+        while not verif(e,employee_id,employee_age,employee_salary):
             employee_name=input("Give me your name : ")
             employee_id=int(input("\nGive me your ID :"))
             employee_age=int(input("\nYour age : "))
