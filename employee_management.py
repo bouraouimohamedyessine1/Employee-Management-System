@@ -97,17 +97,65 @@ def rank_employees_based_on_salary(e):
         print(f" employe{i+1}: Name:{e[i]['name']} \n ID: {e[i]['id']} \n Salary: {e[i]['salary']}TND \n")
 def search_employee_by_name(e):
     name_to_search=(input("Enter employee id to search it"))
-        found=0
-        i=0
-        while(found==0 and i<len(e)):
-            if e[i]["name"]==name_to_search:
-                found=1
-                print(f"====EMPLOYEE INFORMATIONS====\n employee found: Name:{e[i]['name']} \n ID: {e[i]['id']} \n Age: {e[i]['age']} \n Salary: {e[i]['salary']}TND \n")
-            else:
-                i+=1
-        if(found==0 ):
-            print("employee does't exist")
-
+    found=0
+    i=0
+    while(found==0 and i<len(e)):
+        if e[i]["name"]==name_to_search:
+            found=1
+            print(f"====EMPLOYEE INFORMATIONS====\n employee found: Name:{e[i]['name']} \n ID: {e[i]['id']} \n Age: {e[i]['age']} \n Salary: {e[i]['salary']}TND \n")
+        else:
+            i+=1
+    if(found==0 ):
+        print("employee does't exist")
+def add_employee(e):
+    employee_name=input("Give me your name : ")
+    employee_id=int(input("\nGive me your ID :"))
+    employee_age=int(input("\nYour age : "))
+    employee_salary=float(input("\n Your salary :"))
+    while not verif(e,employee_id,employee_age,employee_salary):
+        employee_name=input("Give me your name : ")
+        employee_id=int(input("\nGive me your ID :"))
+        employee_age=int(input("\nYour age : "))
+        employee_salary=float(input("\n Your salary :"))
+    e.append(dict())
+    e[len(e)-1]["name"]=employee_name
+    e[len(e)-1]["id"]=employee_id
+    e[len(e)-1]["age"]=employee_age
+    e[len(e)-1]["salary"]=employee_salary
+    return e
+def verif2(e,employee_age,employee_salary):
+    test=True
+    i=0
+    if employee_salary<0:
+        print("Sarlary Error")
+        test=False
+    if not(18<=employee_age<=64):
+        print("Your age is unrealstic")
+        test=False
+    return test
+def update_employee(e):
+    id=int(input("Enter the employee's ID :"))
+    i=0
+    x=0
+    while i<len(e):
+        if id==e[i]["id"]:
+            x=1
+            employee_name=input("Give me your name : ")
+            employee_age=int(input("\nYour age : "))
+            employee_salary=float(input("\n Your salary :"))
+            while not verif2(e,employee_age,employee_salary):
+                employee_name=input("Give me your name : ")
+                employee_age=int(input("\nYour age : "))
+                employee_salary=float(input("\n Your salary :"))
+            e[i]["name"]=employee_name
+            e[i]["age"]=employee_age
+            e[i]["salary"]=employee_salary
+                
+        i+=1
+    if x==0:
+        print("Employee does not exist")
+    return e
+            
 
 
 
