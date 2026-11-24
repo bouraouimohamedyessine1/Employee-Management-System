@@ -4,6 +4,19 @@ def employees_number():
     while number_of_employee<=0:
         number_of_employee=int(input("How many employee? "))
     return number_of_employee
+def verif(e,employee_id,employee_age):
+    test=True
+    i=0
+    if not(18<=employee_age<=64):
+        print("Your age is unrealstic")
+        test=False
+    while test and i<len(e):
+        if e[i]["id"]==employee_id:
+            print("ID already exist \n")
+            test=False
+        i+=1
+    return test
+
 def employees_informations(number_of_employee):
     e=[]
     for i in range(number_of_employee):
@@ -11,6 +24,11 @@ def employees_informations(number_of_employee):
         employee_id=int(input("\nGive me your ID :"))
         employee_age=int(input("\nYour age : "))
         employee_salary=float(input("\n Your salary :"))
+        while not verif(e,employee_id,employee_age):
+            employee_name=input("Give me your name : ")
+            employee_id=int(input("\nGive me your ID :"))
+            employee_age=int(input("\nYour age : "))
+            employee_salary=float(input("\n Your salary :"))
         e.append(dict())
         e[i]["name"]=employee_name
         e[i]["id"]=employee_id
@@ -75,6 +93,7 @@ def rank_employees_based_on_salary(e):
     print("====Rank employees based on salary====\n")
     for i in range(len(e)):
         print(f" employe{i+1}: Name:{e[i]['name']} \n ID: {e[i]['id']} \n Salary: {e[i]['salary']}TND \n")
+
 
 
 
