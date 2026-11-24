@@ -4,32 +4,49 @@ def employees_number():
     while number_of_employee<=0:
         number_of_employee=int(input("How many employee? "))
     return number_of_employee
-def verif(e,employee_id,employee_age,employee_salary):
-    test=True
+def verif(e,employee_id):
     i=0
-    if employee_salary<0:
-        print("Sarlary Error")
-        test=False
-    if not(18<=employee_age<=64):
-        print("Your age is unrealstic")
-        test=False
+    test=True
     while test and i<len(e):
         if e[i]["id"]==employee_id:
             print("ID already exist \n")
             test=False
         i+=1
     return test
-
+def verif_salary(employee_salary):
+    test=True
+    if employee_salary<0:
+        print("Sarlary Error")
+        test=False
+    return test
+        
+def verif_id(employee_id):
+    test=True
+    if len(str(employee_id))!=8:
+        test=False
+    return test
+def verif_age(employee_age):
+    test=True
+    if not(18<=employee_age<=64):
+            print("Your age is unrealstic")
+            test=False
+    return test
 def employees_informations(number_of_employee):
     e=[]
     for i in range(number_of_employee):
         employee_name=input("Give me your name : ")
         employee_id=int(input("\nGive me your ID :"))
+        while not(verif_id(employee_id)):
+            employee_id=int(input("\nError give me other your ID :"))
         employee_age=int(input("\nYour age : "))
+        while not(verif_age(employee_age)):
+            employee_age=int(input("\nYour age : "))
         employee_salary=float(input("\n Your salary :"))
-        while not verif(e,employee_id,employee_age,employee_salary):
-            employee_name=input("Give me your name : ")
+        while not(verif_salary(employee_salary)):
+            employee_salary=float(input("\n Your salary :"))
+        while not verif(e,employee_id):
             employee_id=int(input("\nGive me your ID :"))
+            employee_name=input("Give me your name : ")
             employee_age=int(input("\nYour age : "))
             employee_salary=float(input("\n Your salary :"))
         e.append(dict())
@@ -84,7 +101,7 @@ def update_salary(e):
             print("Salary updated succesfully")
         i+=1
     if x==0:
-        print("employee does niot exist")
+        print("employee does not exist")
     return e
 def rank_employees_based_on_salary(e):
     for i in range(len(e)-1):
@@ -111,11 +128,17 @@ def search_employee_by_name(e):
 def add_employee(e):
     employee_name=input("Give me your name : ")
     employee_id=int(input("\nGive me your ID :"))
+    while not(verif_id(employee_id)):
+        employee_id=int(input("\nError give me other your ID :"))
     employee_age=int(input("\nYour age : "))
+    while not(verif_age(employee_age)):
+        employee_age=int(input("\nYour age : "))
     employee_salary=float(input("\n Your salary :"))
-    while not verif(e,employee_id,employee_age,employee_salary):
-        employee_name=input("Give me your name : ")
+    while not(verif_salary(employee_salary)):
+        employee_salary=float(input("\n Your salary :"))
+    while not verif(e,employee_id):
         employee_id=int(input("\nGive me your ID :"))
+        employee_name=input("Give me your name : ")
         employee_age=int(input("\nYour age : "))
         employee_salary=float(input("\n Your salary :"))
     e.append(dict())
@@ -134,7 +157,7 @@ def verif2(e,employee_age,employee_salary):
         print("Your age is unrealstic")
         test=False
     return test
-def update_employee(e):
+def edit_employee(e):
     id=int(input("Enter the employee's ID :"))
     i=0
     x=0
