@@ -2,7 +2,13 @@
     {
         "name": "mahdi",
         "id": 15372337,
-        "age": 20,
-        "salary": 12.0
+        "age": 18,
+        "salary": 200.0
+    },
+    {
+        "name": "yessine",
+        "id": 18956,
+        "age": 18,
+        "salary": 200.0
     }
 ]
