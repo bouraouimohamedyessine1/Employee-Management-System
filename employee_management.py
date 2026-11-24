@@ -1,3 +1,4 @@
+import json
 def employees_number():
     number_of_employee=int(input("How many employee? "))
     while number_of_employee<=0:
@@ -155,7 +156,30 @@ def update_employee(e):
     if x==0:
         print("Employee does not exist")
     return e
-            
+def save_employee(e):
+    with open("employee.json","w") as file:
+        json.dump(e,file,indent=4)
+def display_from_database():
+    try:
+        with open("employee.json","r") as file:
+            x=json.load(file)
+    except:
+        x=[]
+    print(x)
+
+
+
+
+
+
+
+
+
+
+number_of_employee=employees_number()
+e=employees_informations(number_of_employee)
+save_employee(e)
+display_from_database()
 
 
 
