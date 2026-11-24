@@ -1,4 +1,3 @@
-from numpy import*
 def employees_number():
     number_of_employee=int(input("How many employee? "))
     while number_of_employee<=0:
@@ -42,7 +41,7 @@ def display_employees_informations(number_of_employee,e):
     print("====EMPLOYEE INFORMATIONS====\n")
     for i in range(number_of_employee):
         print(f" employe{i+1}: Name:{e[i]['name']} \n ID: {e[i]['id']} \n Age: {e[i]['age']} \n Salary: {e[i]['salary']}TND \n")
-def search_employee(e,number_of_employee):
+def search_employee_by_id(e,number_of_employee):
     id_to_search=int(input("Enter employee id to search it"))
     found=0
     i=0
@@ -59,7 +58,7 @@ def avg_salary_employee(e,number_of_employee):
     for i in range(number_of_employee):
         s+=e[i]["salary"]
     avg=s/number_of_employee
-    print(f"number of employee : {number_of_employee} \n average salary : {avg:.2f}")
+    print(f"number of employee : {number_of_employee} \n total payroll :{s:.2f} average salary : {avg:.2f}")
 def delete_employee(e):
     del_employee=int(input("Give me the ID of the employee that i should delete"))
     i=0
@@ -96,6 +95,18 @@ def rank_employees_based_on_salary(e):
     print("====Rank employees based on salary====\n")
     for i in range(len(e)):
         print(f" employe{i+1}: Name:{e[i]['name']} \n ID: {e[i]['id']} \n Salary: {e[i]['salary']}TND \n")
+def search_employee_by_name(e):
+    name_to_search=(input("Enter employee id to search it"))
+        found=0
+        i=0
+        while(found==0 and i<len(e)):
+            if e[i]["name"]==name_to_search:
+                found=1
+                print(f"====EMPLOYEE INFORMATIONS====\n employee found: Name:{e[i]['name']} \n ID: {e[i]['id']} \n Age: {e[i]['age']} \n Salary: {e[i]['salary']}TND \n")
+            else:
+                i+=1
+        if(found==0 ):
+            print("employee does't exist")
 
 
 
