@@ -18,8 +18,9 @@ def employees_informations(number_of_employee):
         e[i]["salary"]=employee_salary
     return e
 def display_employees_informations(number_of_employee,e):
+    print("====EMPLOYEE INFORMATIONS====\n")
     for i in range(number_of_employee):
-        print(f"====EMPLOYEE INFORMATIONS====\n employe{i+1}: Name:{e[i]['name']} \n ID: {e[i]['id']} \n Age: {e[i]['age']} \n Salary: {e[i]['salary']}TND \n")
+        print(f" employe{i+1}: Name:{e[i]['name']} \n ID: {e[i]['id']} \n Age: {e[i]['age']} \n Salary: {e[i]['salary']}TND \n")
 def search_employee(e,number_of_employee):
     id_to_search=int(input("Enter employee id to search it"))
     found=0
@@ -64,5 +65,16 @@ def update_salary(e):
     if x==0:
         print("employee does niot exist")
     return e
+def rank_employees_based_on_salary(e):
+    for i in range(len(e)-1):
+        for j in range(i+1,len(e)):
+            if e[i]["salary"]<e[j]["salary"]:
+                x=e[i]
+                e[i]=e[j]
+                e[j]=x
+    print("====Rank employees based on salary====\n")
+    for i in range(len(e)):
+        print(f" employe{i+1}: Name:{e[i]['name']} \n ID: {e[i]['id']} \n Salary: {e[i]['salary']}TND \n")
+
 
 
