@@ -22,7 +22,7 @@ def verif_salary(employee_salary):
         
 def verif_id(employee_id):
     test=True
-    if len(str(employee_id))!=8:
+    if len(employee_id)!=8:
         test=False
     return test
 def verif_age(employee_age):
@@ -35,19 +35,14 @@ def employees_informations(number_of_employee):
     e=[]
     for i in range(number_of_employee):
         employee_name=input("Give me your name : ")
-        employee_id=int(input("\nGive me your ID :"))
-        while not(verif_id(employee_id)):
-            employee_id=int(input("\nError give me other your ID :"))
+        employee_id=input("\nGive me your ID :")
+        while not(verif_id(employee_id)) or not verif(e,employee_id):
+            employee_id=(input("\nError give me other your ID :"))
         employee_age=int(input("\nYour age : "))
         while not(verif_age(employee_age)):
             employee_age=int(input("\nYour age : "))
         employee_salary=float(input("\n Your salary :"))
         while not(verif_salary(employee_salary)):
-            employee_salary=float(input("\n Your salary :"))
-        while not verif(e,employee_id):
-            employee_id=int(input("\nGive me your ID :"))
-            employee_name=input("Give me your name : ")
-            employee_age=int(input("\nYour age : "))
             employee_salary=float(input("\n Your salary :"))
         e.append(dict())
         e[i]["name"]=employee_name
@@ -60,7 +55,7 @@ def display_employees_informations(number_of_employee,e):
     for i in range(number_of_employee):
         print(f" employe{i+1}: Name:{e[i]['name']} \n ID: {e[i]['id']} \n Age: {e[i]['age']} \n Salary: {e[i]['salary']}TND \n")
 def search_employee_by_id(e,number_of_employee):
-    id_to_search=int(input("Enter employee id to search it"))
+    id_to_search=(input("Enter employee id to search it"))
     found=0
     i=0
     while(found==0 and i<number_of_employee):
@@ -78,7 +73,7 @@ def avg_salary_employee(e,number_of_employee):
     avg=s/number_of_employee
     print(f"number of employee : {number_of_employee} \n total payroll :{s:.2f} average salary : {avg:.2f}")
 def delete_employee(e):
-    del_employee=int(input("Give me the ID of the employee that i should delete"))
+    del_employee=(input("Give me the ID of the employee that i should delete"))
     i=0
     x=0
     while(i<len(e)):
@@ -91,7 +86,7 @@ def delete_employee(e):
     if x==0:
         print("employee does not exist")
 def update_salary(e):
-    employee_id=int(input("Give me your ID :"))
+    employee_id=(input("Give me your ID :"))
     i=0
     x=0
     while i<len(e) and x==0:
@@ -129,23 +124,17 @@ def search_employee_by_name(e):
         print("employee does't exist")
 def add_employee(e):
     employee_name=input("Give me your name : ")
-    employee_id=int(input("\nGive me your ID :"))
-    while not(verif_id(employee_id)):
-        employee_id=int(input("\nError give me other your ID :"))
+    employee_id=(input("\nGive me your ID :"))
+    while not(verif_id(employee_id)) or not verif(e,employee_id):
+        if not(verif_id(employee_id)):
+            print("ID must contain exactly 8 digits")
+        employee_id=(input("\nError give me other your ID :"))
     employee_age=int(input("\nYour age : "))
     while not(verif_age(employee_age)):
         employee_age=int(input("\nYour age : "))
     employee_salary=float(input("\n Your salary :"))
     while not(verif_salary(employee_salary)):
         employee_salary=float(input("\n Your salary :"))
-    while not verif(e,employee_id):
-        while not(verif_id(employee_id)):
-            employee_id=int(input("\nGive me your ID :"))
-        employee_name=input("Give me your name : ")
-        while not(verif_age(employee_age)):
-            employee_age=int(input("\nYour age : "))
-        while not(verif_salary(employee_salary)):
-            employee_salary=float(input("\n Your salary :"))
     e.append(dict())
     e[len(e)-1]["name"]=employee_name
     e[len(e)-1]["id"]=employee_id
@@ -164,7 +153,7 @@ def verif2(e,employee_age,employee_salary):
         test=False
     return test
 def edit_employee(e):
-    id=int(input("Enter the employee's ID :"))
+    id=(input("Enter the employee's ID :"))
     i=0
     x=0
     while i<len(e):
@@ -181,6 +170,7 @@ def edit_employee(e):
             e[i]["age"]=employee_age
             e[i]["salary"]=employee_salary
             save_employee(e)
+
                 
         i+=1
     if x==0:
@@ -203,7 +193,7 @@ def load_employee():
 
 
 
-
+#main program:
 x=load_employee()
 if len(x)==0:
     number_of_employee=employees_number()
